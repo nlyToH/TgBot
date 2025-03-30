@@ -4,7 +4,6 @@ import telebot
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -28,7 +27,7 @@ def get_weather():
     data = response.json()
 
     rain_days = set()
-    today = datetime.utcnow().date()
+    today = datetime.now().date()
 
     for forecast in data.get("forecasts", []):
         date = datetime.strptime(forecast["date"], "%Y-%m-%d").date()
@@ -49,5 +48,3 @@ def rain_command(message):
 
 
 bot.polling(none_stop=True)
-
-
